@@ -1,0 +1,62 @@
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4rem;
+  flex-wrap: wrap;
+  background-color: #eeeeee; 
+  color: white;
+}
+
+
+.firstnav span {
+    color: #404042;
+  font-size: 1.5rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+
+.secondnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.secondnav button{
+    background-color: #6858c7;
+}
+
+.cartBtn {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+
+
+@media (max-width: 450px) {
+  .firstnav span {
+    font-size: 1rem;
+  }
+
+  .navbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+  }
+
+  .cartBtn {
+    width: 16px;
+    height: 16px;
+    margin-right: 1px;
+  }
+
+
+
+  button[mat-button] {
+    font-size: 0.85rem;
+    
+  }
+}

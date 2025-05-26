@@ -1,0 +1,25 @@
+
+<div class="product-grid">
+  <mat-card class="product-card" [routerLink]="['/product',productItem.id]">
+    <div class="img">
+      <img mat-card-image [src]="productItem.image" alt="{{ productItem.title }}">
+    </div>
+
+    <div class="discri">
+      <div class="itmeName">
+        <mat-card-title>{{ productItem.title }}</mat-card-title>
+      </div>      
+      <div>
+         <mat-card-content>
+         
+          <div class="pdPrice">
+            <h3>{{ productItem.price | currency:'INR'}}</h3>
+          </div>
+        </mat-card-content>
+      </div>
+    </div>
+    <div class="btn">
+     
+    </div>  
+</mat-card>
+</div>

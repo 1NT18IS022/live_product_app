@@ -1,0 +1,37 @@
+<div class="container">
+    <mat-card class="product-card" >
+  <div class="product-container">
+
+   
+    <div class="image-section">
+      <img mat-card-image [src]="product.image" [alt]="product.title" class="product-img" />
+      <div class="add-btn">
+        <button mat-raised-button color="primary" (click)="addToCart(product.id)">
+          <mat-icon>add_shopping_cart</mat-icon>
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+    
+    <div class="details-section">
+      <mat-card-title>{{ product.title }}</mat-card-title>
+      <mat-card-content>
+        <p class="description">{{ product.description }}</p>
+
+        <div class="price-row">
+          <h3>Price:</h3>
+          <span>{{ product.price | currency: 'INR' }}</span>
+        </div>
+
+        <div class="rating-row">
+          <mat-icon color="warn">star</mat-icon>
+          <span>{{ product.rating.rate }} ({{ product.rating.count }})</span>
+        </div>
+      </mat-card-content>
+    </div>
+
+  </div>
+</mat-card>
+
+</div>
