@@ -13,37 +13,31 @@ export class CartComponent implements OnInit {
   constructor(private cartService:CartService) { }
 
   ngOnInit(): void {
-   this.filteredproducts=this.cartService.getCartItems();
-   this.filteredproducts.map((product)=>{
-    product.quantity=1;
-    this.totalPrice=product.price+this.totalPrice;
-   })
-  
+    this.cartService.getCartItems().subscribe((data)=>{
+      this.filteredproducts=data;
+      this.totalPrice=this.filteredproducts.reduce((sum,item)=>{
+        return sum+= (item.quantity||1) * item.price;
+   },0);
+    })
+
+   
+   
   }
 
   removeItem(id:string)
   {
-   
-    this.filteredproducts=  this.filteredproducts.filter((product)=>
-    product.id!=id);
-
-    this.totalPrice = this.filteredproducts.reduce((total, product) => {
-  return total +  (product.price ) * (product.quantity ?? 0 );
-}, 0);
-   
-    
-   
-  
+  this.cartService.removeItem(id);
   }
 
   increaseQuantity(productid:string)
   {
-     const product=this.filteredproducts.find(product=>product.id===productid)! ;
+     const product=this.filteredproducts.find(productt=>productt.id===productid)! ;
     
-    if(product)
+    if(product && product.quantity!= null && product.quantity>=0)
     {
-      let qty=product.quantity!;
-      product.quantity=qty+1;
+   
+     
+       product.quantity+=1;
        this.totalPrice+=product.price;
     }
     
@@ -51,14 +45,12 @@ export class CartComponent implements OnInit {
 
    decreaseQuantity(productid:string)
   {
-    const product=this.filteredproducts.find(product=>product.id===productid)! ;
+    const product=this.filteredproducts.find(productt=>productt.id===productid)! ;
     
-    if(product)
+    if(product && product.quantity!= null && product.quantity>0)
     {
-      let qty=product.quantity!;
-      if(qty>=1)
-      product.quantity=qty-1;
-     this.totalPrice-=product.price;
+       product.quantity-=1;
+       this.totalPrice-=product.price;
     }
    
     

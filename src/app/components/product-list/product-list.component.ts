@@ -10,7 +10,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductListComponent implements OnInit {
 
-  constructor(private productService:ProductService)  { }
+  constructor(private productService:ProductService,private cartService:CartService)  { }
   products:Product[]=[];
   filteredproducts:Product[]=[];
   categories:string[]=[];
@@ -25,6 +25,11 @@ export class ProductListComponent implements OnInit {
       }
     )
 
+  }
+
+  addtocart(id:string,product:Product)
+  {
+     this.cartService.addToCart(product);
   }
 
 

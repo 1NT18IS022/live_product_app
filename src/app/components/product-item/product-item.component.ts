@@ -16,7 +16,8 @@ products!: Product[];
   ngOnInit(): void {
   }
 
-  addToCart(productId:string){
+  addToCart(e:Event,productId:string){
+       e.stopPropagation();
       this.addCart.emit(productId);
   }
 
